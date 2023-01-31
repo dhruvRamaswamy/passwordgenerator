@@ -1,0 +1,113 @@
+<!-- TODO: look at all the ariaLabels to ladd -->
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <script src="https://kit.fontawesome.com/e7d83d0eed.js" crossorigin="anonymous"></script>
+    <script defer type="text/javascript" src="node_modules/zxcvbn/dist/zxcvbn.js">
+    </script>
+    <script defer src='/js/main.js' type="module"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <h1>passwordGenerator.dhruv</h1>
+    <main>
+
+
+        <form id="password-generator">
+            <div class="password-box">
+                <div class="input">
+                    <input type="text" name="passwordBox" id="password-box" placeholder="Password" autocomplete="off">
+                    <div class="btns">
+                        <button class="clipboard-btn hint--top" type="button" aria-label="Copy to clipboard"><i
+                                class="fa-solid fa-clipboard" name="clipboard">
+
+                            </i></button>
+                        <button class="refresh-btn" type="button"><i
+                                class="fa-solid fa-arrows-rotate rotate"></i></button>
+                    </div>
+
+                </div>
+                <div class="strength-meter">
+                </div>
+            </div>
+            <div class="setting password-length">
+                <input type="range" min='0' max='1000' value="550" id="password-length-slider" value="20"
+                    name="passwordLengthSlider">
+                <label for="password-length-slider"><span class="hint--bottom"
+                        aria-label="Password Length"></span></label>
+            </div>
+            <fieldset class="settings">
+
+                <div class="setting include include-uppercase-letters">
+                    <div class="ckbx-style-11">
+                        <input type="checkbox" id="include-uppercase-letters-checkbox" value="1" name="ckbx-style-11"
+                            checked data-function="uppercase">
+                        <label for="include-uppercase-letters-checkbox"></label>
+                    </div>
+                    <label for="include-uppercase-letters-checkbox">Uppercase Letters</label>
+                </div>
+
+                <div class="setting include include-lowercase-letters">
+                    <div class="ckbx-style-11">
+                        <input type="checkbox" id="include-lowercase-letters-checkbox" value="1" name="ckbx-style-11"
+                            checked data-function="lowercase">
+                        <label for="include-lowercase-letters-checkbox"></label>
+                    </div>
+                    <label for="include-lowercase-letters-checkbox">Lowercase Letters</label>
+                </div>
+                <div class="setting include include-numbers">
+                    <div class="ckbx-style-11">
+                        <input type="checkbox" id="include-numbers-checkbox" value="1" name="ckbx-style-11" checked
+                            data-function="numbers">
+                        <label for="include-numbers-checkbox"></label>
+                    </div>
+                    <label for="include-numbers-checkbox">Numbers</label>
+                </div>
+                <div class="setting include include-symbols">
+                    <div class="ckbx-style-11">
+                        <input type="checkbox" id="include-symbol-checkbox" value="1" name="ckbx-style-11" checked
+                            data-function="symbols">
+                        <label for="include-symbol-checkbox"></label>
+                    </div>
+                    <label for="include-symbol-checkbox">Symbols</label>
+                </div>
+                <!-- code this later
+                <div class="setting include include-random-word">
+                    <div class="ckbx-style-11">
+                        <input type="checkbox" id="include-random-words-checkbox" value="0" name="ckbx-style-11">
+                        <label for="include-random-words-checkbox"></label>
+                    </div>
+                    <label for="include-random-words-checkbox">Random Words</label>
+                </div> -->
+            </fieldset>
+            <button class="submit-button" type="submit" for="password-generator">Generate Password</button>
+        </form>
+
+        <!-- <div class="password-time-to-crack">
+            Your password would take <span></span> seconds to crack.
+        </div> -->
+    </main>
+    <footer>
+        <section class="social" role="social-links">
+            <ul>
+                <li><a href="https://www.instagram.com/dhruv_ramaswamy/" class="fa-brands fa-instagram"></a>
+                </li>
+                <li><a href=" https://www.linkedin.com/in/dhruvramaswamy/" class="fa-brands fa-linkedin-in"></a>
+                </li>
+                <li><a href="https://github.com/dhruvRamaswamy" class="fa-brands fa-github"></a></li>
+                <li><a href="https://stackoverflow.com/users/18085879/dhruvramaswamy"
+                        class="fa-brands fa-stack-overflow"></a></li>
+
+            </ul>
+        </section>
+    </footer>
+</body>
+
+</html>

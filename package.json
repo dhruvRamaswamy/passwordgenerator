@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "css-checkbox-library": "^1.5.2",
+    "hint.css": "^2.7.0",
+    "zxcvbn": "^4.4.2"
+  }
+}

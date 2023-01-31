@@ -1,0 +1,25 @@
+body {
+    margin: auto;
+    overflow: auto;
+    background: rgb(255, 25, 102);
+    background: linear-gradient(90deg, rgba(255, 25, 102, 1) 8%, rgba(207, 22, 222, 1) 26%, rgba(31, 22, 222, 1) 46%, rgba(137, 37, 245, 1) 65%, rgba(1, 95, 250, 1) 96%);
+    animation: gradientBody 30s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+
+
+@keyframes gradientBody {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}

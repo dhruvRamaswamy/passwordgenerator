@@ -1,0 +1,33 @@
+footer {
+    $footer-color: hsl(21, 92%, 90%);
+    $size: 60px;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+
+    section.social ul {
+
+        display: flex;
+        gap: 30px;
+
+        li a {
+            color: $footer-color;
+
+            font-size: 27px;
+            border-radius: 50%;
+            border: 3px solid $footer-color;
+            width: $size;
+            height: $size;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s all ease;
+
+            &:hover {
+                color: black;
+                border-color: black;
+                background-color: rgb(241, 208, 240);
+            }
+        }
+    }
+}
