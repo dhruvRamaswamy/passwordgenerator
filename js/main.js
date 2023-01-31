@@ -1,4 +1,5 @@
 "use strict";
+// ZXCVBN works because it is added in HTML in global namespace
 import Slider from "./slider.js";
 const strengthBar = document.querySelector(
   "#password-generator > div > div.strength-meter"
@@ -80,6 +81,7 @@ console.log(passwordGenerator);
 function updateAndGeneratePassword() {
   let password = generatePassword(passwordLength.textContent, checkboxes);
   passwordBox.value = password;
+  setStrengthBarLevel(zxcvbn(password).score + 1);
 }
 
 refreshBtn.addEventListener("click", (e) => {
@@ -108,3 +110,5 @@ areaToLeave.addEventListener("mouseleave", (e) => {
     clipboardBtn.ariaLabel = "Copy to Clipboard";
   }, 250);
 });
+
+console.log(zxcvbn("123"));
