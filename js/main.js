@@ -93,7 +93,8 @@ refreshBtn.addEventListener("click", (e) => {
 
 const clipboardBtnI = document.querySelector("button.clipboard-btn > i");
 const clipboardBtn = document.querySelector("button.clipboard-btn");
-clipboardBtnI.addEventListener("click", (e) => {
+const areaToLeave = document.querySelector(".password-box .btns");
+clipboardBtn.addEventListener("click", (e) => {
   if (passwordBox.value == "") {
     return;
   }
@@ -101,7 +102,9 @@ clipboardBtnI.addEventListener("click", (e) => {
   clipboardBtn.ariaLabel = "Copied!";
 });
 
-clipboardBtn.addEventListener("mouseleave", (e) => {
-  console.log("moused out");
-  clipboardBtn.ariaLabel = "Copy to Clipboard";
+areaToLeave.addEventListener("mouseleave", (e) => {
+  console.log(e);
+  setTimeout(() => {
+    clipboardBtn.ariaLabel = "Copy to Clipboard";
+  }, 250);
 });
