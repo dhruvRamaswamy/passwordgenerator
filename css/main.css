@@ -74,8 +74,8 @@ body {
 
 [class^=ckbx-style-] label:before {
   box-shadow: none !important;
-  color: black !important;
 }
+
 footer {
   margin-top: 80px;
   display: flex;
@@ -122,6 +122,46 @@ input[type=range]::-webkit-slider-thumb {
   background-color: rgb(93, 58, 199);
   border-radius: 8px;
   margin-top: -18px;
+}
+
+.copied-notification {
+  position: fixed;
+  display: none;
+  left: 100px;
+  bottom: 60px;
+  background-color: black;
+  color: white;
+  padding: 15px 60px;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-family: "Quicksand", "sans-serif";
+}
+.copied-notification > span {
+  cursor: pointer;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: color;
+  border-radius: 50%;
+  background-color: white;
+  border: 3px solid black;
+  right: -10px;
+  top: -8px;
+}
+.copied-notification > span span {
+  position: absolute;
+  width: 18px;
+  height: 4px;
+  background-color: black;
+  border-radius: 2px;
+  top: 10px;
+  left: 3px;
+}
+.copied-notification > span span.right-line {
+  transform: rotate(45deg);
+}
+.copied-notification > span span.left-line {
+  transform: rotate(-45deg);
 }
 
 [class^=ckbx-] {
@@ -924,6 +964,7 @@ input[type=range]::-webkit-slider-thumb {
   transform: translateX(-50%) translateY(-8px);
 }
 
+/* for id */
 /**
  * bottom tooltip
  */
@@ -1586,6 +1627,7 @@ body main #password-generator .password-box .input input {
 }
 body main #password-generator .password-box .input input::placeholder {
   color: black;
+  opacity: 0.7;
   font-family: "Poppins", sans-serif;
 }
 body main #password-generator .password-box .input .btns {
@@ -1594,13 +1636,14 @@ body main #password-generator .password-box .input .btns {
   justify-content: space-around;
   margin-right: 10px;
 }
+body main #password-generator .password-box .input .btns > *:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+}
 body main #password-generator .password-box .input .btns > * > * {
   font-size: 2.2rem;
-  cursor: pointer;
+  cursor: inherit;
   transition: all 250ms ease;
-}
-body main #password-generator .password-box .input .btns > * > *:hover {
-  opacity: 0.7;
 }
 body main #password-generator .password-box .strength-meter {
   height: 5px;
@@ -1681,7 +1724,6 @@ body main button.submit-button:hover {
   font-family: "Quicksand", "Poppins";
   font-size: large;
   padding: 10px;
-  animation-delay: 1s;
 }
 
 /*# sourceMappingURL=main.css.map */

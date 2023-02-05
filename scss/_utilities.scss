@@ -5,14 +5,9 @@
 [class^=ckbx-style-] {
     label:before {
         box-shadow: none !important;
-        color: black !important;
     }
 
-    :checked {}
+    // :checked {}
 
-    :not(:checked) {}
-}
-
-.ckbx-style-11 input[type=checkbox]:checked+label:before {
-    // background-color: green !important;
+    // :not(:checked) {}
 }

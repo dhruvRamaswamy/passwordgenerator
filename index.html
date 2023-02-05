@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <h1>passwordGenerator.dhruv</h1>
+    <h1>passwordGenerator.app</h1>
     <main>
 
 
@@ -25,11 +25,11 @@
                 <div class="input">
                     <input type="text" name="passwordBox" id="password-box" placeholder="Password" autocomplete="off">
                     <div class="btns">
-                        <button class="clipboard-btn hint--top" type="button" aria-label="Copy to clipboard"><i
+                        <button class="clipboard-btn hint--top" type="button" aria-label="Copy to clipboard" disabled><i
                                 class="fa-solid fa-clipboard" name="clipboard">
 
                             </i></button>
-                        <button class="refresh-btn" type="button"><i
+                        <button class="refresh-btn" type="button" disabled><i
                                 class="fa-solid fa-arrows-rotate rotate"></i></button>
                     </div>
 
@@ -39,7 +39,7 @@
             </div>
             <div class="setting password-length">
                 <input type="range" min='0' max='1000' value="550" id="password-length-slider" value="20"
-                    name="passwordLengthSlider">
+                    data-function="password-length" name="passwordLengthSlider">
                 <label for="password-length-slider"><span class="hint--bottom"
                         aria-label="Password Length"></span></label>
             </div>
@@ -93,6 +93,13 @@
         <!-- <div class="password-time-to-crack">
             Your password would take <span></span> seconds to crack.
         </div> -->
+        <div class="copied-notification">
+            <p>Copied!</p>
+            <span class="close-button">
+                <span class="right-line"></span>
+                <span class="left-line"></span>
+            </span>
+        </div>
     </main>
     <footer>
         <section class="social" role="social-links">

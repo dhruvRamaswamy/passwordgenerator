@@ -1,0 +1,58 @@
+// @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&display=swap');
+
+.copied-notification {
+    position: fixed;
+    display: none;
+    left: 100px;
+    bottom: 60px;
+    background-color: black;
+    color: white;
+    padding: 15px 60px;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-family: 'Quicksand', 'sans-serif';
+
+    &>span {
+        $width: 30px;
+        $height: $width;
+        $offset-into: -5px;
+        cursor: pointer;
+        position: absolute;
+        width: $width;
+        height: $height;
+        background-color: color;
+        border-radius: 50%;
+        background-color: white;
+        border: 3px solid black;
+        right: -(($width / 2) + $offset-into);
+        top: -(($height / 2) + $offset-into - 2px);
+        // import proper librariess\
+        //right: -(math.div($width, 2) + $offset-into);
+        //top: -(math.div($height, 2) + $offset-into - 2px);
+
+        span {
+            position: absolute;
+            $check-width: 18px;
+            $check-height: 4px;
+            width: $check-width;
+            height: $check-height;
+            background-color: black;
+            border-radius: 2px;
+
+            top: 10px;
+            left: 3px;
+
+            &.right-line {
+                transform: rotate(45deg);
+            }
+
+            &.left-line {
+                transform: rotate(-45deg);
+            }
+
+        }
+
+
+    }
+
+}

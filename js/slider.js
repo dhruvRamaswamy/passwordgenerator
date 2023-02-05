@@ -1,17 +1,16 @@
 import { scale } from "./functions.js";
 export default class Slider {
   constructor(selector, min, max, valueLabelSelector) {
+    this.id = valueLabelSelector;
     this._min = min;
     this._max = max;
     this._slider = document.querySelector(selector);
     this.value = this._slider.value;
     this._valueLabelSelector = document.querySelector(valueLabelSelector);
-    console.log(this._slider);
     this._slider.addEventListener("input", () => {
       this.setCounter();
     });
     this.setCounter();
-    console.log();
   }
   get min() {
     return this._min;
@@ -19,6 +18,17 @@ export default class Slider {
 
   get max() {
     return this._max;
+  }
+
+  set normalValue(value) {
+    this._slider.value = scale(
+      value,
+      this._min,
+      this._max,
+      this._slider.min,
+      this._slider.max
+    );
+    this.setCounter();
   }
 
   get scaledValue() {
