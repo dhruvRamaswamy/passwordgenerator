@@ -3,20 +3,28 @@
 <html lang="en-US">
 
 <head>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%237d6ee7%22></rect><path fill=%22%23fff%22 d=%22M47.21 58.10L38.12 58.10L38.12 77.45Q37.58 77.63 36.68 77.85Q35.78 78.08 34.70 78.08L34.70 78.08Q30.74 78.08 30.74 74.75L30.74 74.75L30.74 26.87Q30.74 25.43 31.46 24.66Q32.18 23.90 33.71 23.45L33.71 23.45Q36.32 22.64 40.05 22.28Q43.79 21.92 47.30 21.92L47.30 21.92Q58.73 21.92 63.99 26.73Q69.26 31.55 69.26 39.74L69.26 39.74Q69.26 48.11 63.86 53.10Q58.46 58.10 47.21 58.10L47.21 58.10ZM38.03 51.98L46.76 51.98Q53.96 51.98 57.92 49.01Q61.88 46.04 61.88 39.83L61.88 39.83Q61.88 33.71 58.05 30.88Q54.23 28.04 47.12 28.04L47.12 28.04Q44.69 28.04 42.30 28.27Q39.92 28.49 38.03 28.85L38.03 28.85L38.03 51.98Z%22></path></svg>" />
+
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
+    <title>Password Genie</title>
+
     <script src="https://kit.fontawesome.com/e7d83d0eed.js" crossorigin="anonymous"></script>
     <script defer type="text/javascript" src="node_modules/zxcvbn/dist/zxcvbn.js">
     </script>
     <script type="text/javascript" src="node_modules/zxcvbn/dist/zxcvbn.js"></script>
 
     <link rel="stylesheet" href="css/main.css">
+
+
 </head>
 
 <body>
-    <h1>passwordGenerator.app</h1>
+    <h1>Password Genie</h1>
     <main>
 
 
@@ -38,7 +46,7 @@
                 </div>
             </div>
             <div class="setting password-length">
-                <input type="range" min='0' max='1000' value="550" id="password-length-slider" value="20"
+                <input type="range" min='0' max='10000' value="550" id="password-length-slider" value="20"
                     data-function="password-length" name="passwordLengthSlider">
                 <label for="password-length-slider"><span class="hint--bottom"
                         aria-label="Password Length"></span></label>

@@ -2,51 +2,54 @@
 
 import Slider from "./slider.js";
 import { passwordStrengthLevels } from "./functions.js";
-const refreshBtn = document.querySelector("button.refresh-btn > i");
-const refreshBtnElement = document.querySelector("button.refresh-btn");
-const strengthBar = document.querySelector("div.strength-meter");
-
-// ZXCVBN works because it is added in HTML in global namespace
-
-let refreshCounter = 0;
-
-function setStrengthBarLevel(num) {
-  const level = passwordStrengthLevels.find((element) => element.level === num);
-  level;
-  strengthBar.style.width = `${level.width}%`;
-  strengthBar.style.backgroundColor = `${level.color}`;
-}
-
-// checkboxes
+import { chars } from "./functions.js";
+const btn_regenerate = document.querySelector("button.refresh-btn > i");
+const btn_containerRefresh = document.querySelector("button.refresh-btn");
+const element_strengthBar = document.querySelector("div.strength-meter");
 const checkboxes = document.querySelectorAll(
   ".setting.include [class^=ckbx] input"
 );
-
 const passwordLength = document.querySelector(
   "#password-length-slider + label"
 );
-
 const passwordBox = document.querySelector("#password-box");
 
-const chars = {
-  uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  lowercase: "abcdefghijklmnopqrstuvwxyz",
-  symbols: `!@#$%^&*(),./<>;':`,
-  numbers: `1234567890`,
-};
+let refreshCounter = 0;
+// ZXCVBN works because it is added in HTML in global namespace
+
+function setStrengthBarLevel(num) {
+  const level = passwordStrengthLevels.find(
+    (obj_level) => obj_level.level === num
+  );
+  element_strengthBar.style.width = `${level.width}%`;
+  element_strengthBar.style.backgroundColor = `${level.color}`;
+  element_strengthBar.style.opacity = "1";
+}
+
+function autoSetStrengthBarLevel() {
+  setStrengthBarLevel(zxcvbn(passwordBox.value).score + 1);
+}
+
+passwordBox.addEventListener("input", (e) => {
+  autoSetStrengthBarLevel();
+  if (passwordBox.value == "") {
+    element_strengthBar.style.opacity = "0";
+  }
+});
+
 function generatePassword(length, nodeList) {
   let checkboxesArray = Array.from(nodeList);
-  let randomChars = checkboxesArray
+  let charsToUseForPassword = checkboxesArray
     .filter((item) => item.checked)
     .reduce((stringOfChars, checkboxItem) => {
       return (stringOfChars += chars[checkboxItem.dataset.function]);
     }, "");
-  if (randomChars == "") {
+  if (charsToUseForPassword == "") {
     return;
   }
   let result = "";
   for (let i = 0; i < length; i++) {
-    result += getRandomCharFromString(randomChars);
+    result += getRandomCharFromString(charsToUseForPassword);
   }
   return result;
 }
@@ -57,11 +60,22 @@ function getRandomCharFromString(string) {
 
 const passwordGenerator = document.querySelector("#password-generator");
 passwordGenerator.addEventListener("submit", (event) => {
+  generateUpdateUI(event);
+});
+
+document.onkeydown = function (event) {
+  if (event.key === "Enter") {
+    generateUpdateUI(event);
+  }
+};
+
+function generateUpdateUI(event) {
   event.preventDefault();
   updateAndGeneratePassword();
-  refreshBtnElement.disabled = false;
+  btn_containerRefresh.disabled = false;
   clipboardBtn.disabled = false;
-});
+  btn_regenerate.click();
+}
 
 function updateAndGeneratePassword() {
   let password = generatePassword(passwordLength.textContent, checkboxes);
@@ -70,16 +84,16 @@ function updateAndGeneratePassword() {
     return;
   }
   passwordBox.value = password;
-  setStrengthBarLevel(zxcvbn(password).score + 1);
+  autoSetStrengthBarLevel();
 }
 
-refreshBtn.addEventListener("click", (e) => {
+btn_regenerate.addEventListener("click", (e) => {
   if (passwordBox.value == "") {
     return;
   }
   updateAndGeneratePassword();
   refreshCounter += 180;
-  refreshBtn.style.transform = `rotate(${refreshCounter}deg)`;
+  btn_regenerate.style.transform = `rotate(${refreshCounter}deg)`;
 });
 
 const clipboardBtn = document.querySelector("button.clipboard-btn");
@@ -90,6 +104,11 @@ clipboardBtn.addEventListener("click", (e) => {
   }
   navigator.clipboard.writeText(passwordBox.value);
   clipboardBtn.ariaLabel = "Copied!";
+});
+
+document.addEventListener("paste", (event) => {
+  passwordBox.value = event.clipboardData.getData("text/plain");
+  autoSetStrengthBarLevel();
 });
 
 areaToLeave.addEventListener("mouseleave", (e) => {
@@ -113,20 +132,21 @@ function setCheckFieldsAlert() {
   });
 }
 
-document.body.addEventListener("keydown", (event) => {
-  if (event.code == "KeyC" && (event.ctrlKey || event.metaKey)) {
-    navigator.clipboard.writeText(passwordBox.value);
-    let copiedNotification = document.querySelector(".copied-notification");
-    copiedNotification.style.display = "inline";
-    document.body.append(copiedNotification);
-    let xButton = document.querySelector(".close-button");
-    xButton.addEventListener("click", () => {
-      copiedNotification.style.display = "none";
-    });
-    setTimeout(() => {
-      copiedNotification.style.display = "none";
-    }, 3000);
+document.addEventListener("copy", () => {
+  if (passwordBox.value == "") {
+    return;
   }
+  navigator.clipboard.writeText(passwordBox.value);
+  let copiedNotification = document.querySelector(".copied-notification");
+  copiedNotification.style.display = "inline";
+  document.body.append(copiedNotification);
+  let xButton = document.querySelector(".close-button");
+  xButton.addEventListener("click", () => {
+    copiedNotification.style.display = "none";
+  });
+  setTimeout(() => {
+    copiedNotification.style.display = "none";
+  }, 2500);
 });
 
 import Settings from "./settings.js";
@@ -134,6 +154,7 @@ import Settings from "./settings.js";
 // Knowing about the event loop here really saved my life
 
 let passwordSlider;
+let objsettings;
 document.addEventListener("DOMContentLoaded", () => {
   passwordSlider = new Slider(
     "#password-length-slider",
@@ -141,8 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     50,
     "#password-length-slider + label span"
   );
+  objsettings = new Settings(passwordSlider);
 });
 
-setTimeout(() => {
-  new Settings(passwordSlider);
-}, 0);
+setTimeout(() => {}, 0);

@@ -9,3 +9,10 @@ export const passwordStrengthLevels = [
   { level: 4, width: 75, color: "#8AB912" },
   { level: 5, width: 100, color: "#148c1e" },
 ];
+
+export const chars = {
+  uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lowercase: "abcdefghijklmnopqrstuvwxyz",
+  symbols: `!@#$%^&*(),./<>;':`,
+  numbers: `1234567890`,
+};
