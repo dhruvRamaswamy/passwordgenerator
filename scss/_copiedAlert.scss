@@ -1,4 +1,5 @@
 // @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&display=swap');
+@use "sass:math";
 
 .copied-notification {
     position: fixed;
@@ -24,8 +25,8 @@
         border-radius: 50%;
         background-color: white;
         border: 3px solid black;
-        right: -(($width / 2) + $offset-into);
-        top: -(($height / 2) + $offset-into - 2px);
+        right: -(math.div($width, 2) + $offset-into);
+        top: -(math.div($height, 2) + $offset-into - 2px);
         // import proper librariess\
         //right: -(math.div($width, 2) + $offset-into);
         //top: -(math.div($height, 2) + $offset-into - 2px);
