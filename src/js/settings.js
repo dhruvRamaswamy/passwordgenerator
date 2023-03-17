@@ -56,7 +56,6 @@ function writeToDomFromLocalStorage() {
     functionObj = document.querySelector(
       `[data-function='${functionCheckbox}']`
     );
-    console.log(functionObj);
 
     functionObj.checked = checkboxDataItem.checked;
   }
@@ -73,7 +72,6 @@ function writeToLocalStorage() {
   ];
   localStorage.setItem(LCL_STORAGE_SLIDER_KEY, sliderData);
   localStorage.setItem(LCL_STORAGE_SETTING_ITEMS_KEY, checkboxData);
-  console.log("wrote to local storage");
   return [checkboxData, sliderData];
 }
 // Make logic to see if there is none
