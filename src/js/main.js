@@ -1,10 +1,11 @@
 "use strict";
-
+import "./../scss/main.scss";
 import Slider from "./slider.js";
 import Settings from "./settings.js";
 import { passwordStrengthLevels } from "./functions.js";
 import { setStrengthBarLevel } from "./functions.js";
 import { generatePassword } from "./functions.js";
+const zxcvbn = require("zxcvbn");
 const btn_regenerate = document.querySelector("button.refresh-btn > i");
 const btn_containerRefresh = document.querySelector("button.refresh-btn");
 const element_strengthBar = document.querySelector("div.strength-meter");
